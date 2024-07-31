@@ -1,0 +1,16 @@
+{
+  "name": "kohan-leetcd",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsx ./index.ts",
+    "dev": "tsx watch ./index.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "tsx": "^4.11.0",
+    "typescript": "^5.1.3"
+  }
+}
