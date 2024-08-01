@@ -12,5 +12,3 @@ function removeDuplicates(nums: number[]): number {
   }
   return nums.length
 }
-
-removeDuplicates([0,0,1,1,1,2,2,3,3,4])
