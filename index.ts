@@ -1,16 +1,17 @@
-function removeDuplicates(nums: number[]): number {
-  const itemsMap = new Map<number, number>()
-
-  for(let i = nums.length - 1; i >= 0 ; i--){
-    const n = nums[i]
-    const wasHerePreviously = itemsMap.get(n)
-    if(wasHerePreviously != undefined){
-      nums.splice(i, 1)
-    }else{
-      itemsMap.set(n, n)
+function maxProfit(prices: number[]): number {
+    let profit = 0
+    let lowBall = prices[0]
+    
+    for(let i = 0; i <= prices.length-1; i++){
+      const currPrice = prices[i]
+      if(currPrice >= lowBall){
+        const newProfit = currPrice - lowBall
+        if(newProfit > profit) profit = newProfit
+      }else{
+        lowBall = currPrice
+      }
     }
-  }
-  return nums.length
+    return profit
 }
 
-removeDuplicates([0,0,1,1,1,2,2,3,3,4])
+maxProfit([7,1,5,3,6,4])
