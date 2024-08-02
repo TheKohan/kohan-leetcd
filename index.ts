@@ -1,15 +1,17 @@
-function isAnagram(s: string, t: string): boolean {
-  const lettersMap = {}
-  const sArr = s.split('')
-  const tArr = t.split('')
+function containsNearbyDuplicate(nums: number[], k: number): boolean {
+    const map = new Map<number, number>()
 
-  if(s.length !== t.length) return false
+    for(let i = 0; i <= nums.length -1; i++){
+      const num = nums[i]
+      const previouslyFoundIndex = map.get(num)
 
-  sArr.forEach((letter) => lettersMap[letter] = (lettersMap[letter] ?? 0) +1)
+      if(previouslyFoundIndex !== undefined && Math.abs(i - previouslyFoundIndex) <= k){
+        return true
+      }
+      map.set(num, i)
+    }
 
-  tArr.forEach((letter) => lettersMap[letter] = (lettersMap[letter] ?? 0) -1)
-  return Object.values(lettersMap).every(v => v === 0)
+  return false
 };
 
-console.log(isAnagram('anagram', 'nagaram'), 'should be true')
-console.log(isAnagram('rat', 'car'), 'should be false')
+console.log(containsNearbyDuplicate([1,2,3,1], 3))
