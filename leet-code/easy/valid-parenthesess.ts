@@ -1,9 +1,3 @@
-// 40 (
-// 41 )
-// 91 [
-// 93 ]
-// 123 {
-// 125 }
 function isValid(s: string): boolean {
   if(s.length <= 1) return false
 
@@ -29,5 +23,3 @@ function isValid(s: string): boolean {
   
   return true
 };
-
-console.log(isValid("()[]{}"))
