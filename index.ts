@@ -1,33 +1,34 @@
-// 40 (
-// 41 )
-// 91 [
-// 93 ]
-// 123 {
-// 125 }
-function isValid(s: string): boolean {
-  if(s.length <= 1) return false
+/**
+ * Definition for a binary tree node.
+ * class TreeNode {
+ *     val: number
+ *     left: TreeNode | null
+ *     right: TreeNode | null
+ *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.left = (left===undefined ? null : left)
+ *         this.right = (right===undefined ? null : right)
+ *     }
+ * }
+ */
 
-  const openingToClosingCodeMap = {
-    41:40,
-    93:91,
-    125:123
-  }
-  const stack: number[] = [];
-  for(let i = 0; i <= s.length -1; i++){
-    const character = s[i].charCodeAt(0)
-    if(character=== 40 || character === 91 || character === 123){
-      stack.push(character)
-    }else{
-      const lastStackChar = stack.pop()
-      if(lastStackChar !== openingToClosingCodeMap[character]){
-        return false
-      }
+class TreeNode {
+    val: number
+    left: TreeNode | null
+    right: TreeNode | null
+    constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+        this.val = (val===undefined ? 0 : val)
+        this.left = (left===undefined ? null : left)
+        this.right = (right===undefined ? null : right)
     }
-  }
+}
 
-  if(stack.length) return false
-  
-  return true
+function countNodes(root: TreeNode | null): number {
+  if(!root) return 0
+
+  return (countNodes(root.left)) + (countNodes(root.right)) +1
 };
 
-console.log(isValid("()[]{}"))
+const tree = new TreeNode(1, new TreeNode(2, new TreeNode(4), new TreeNode(5)), new TreeNode(3, new TreeNode(6), null))
+
+console.log(countNodes(tree))
