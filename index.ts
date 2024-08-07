@@ -23,12 +23,5 @@ class TreeNode {
     }
 }
 
-function countNodes(root: TreeNode | null): number {
-  if(!root) return 0
 
-  return (countNodes(root.left)) + (countNodes(root.right)) +1
-};
-
-const tree = new TreeNode(1, new TreeNode(2, new TreeNode(4), new TreeNode(5)), new TreeNode(3, new TreeNode(6), null))
-
-console.log(countNodes(tree))
+console.log(minSubArrayLen(7,[2,3,1,2,4,3]))
