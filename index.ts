@@ -33,23 +33,11 @@ class TreeNode {
  }
  
 
-type ToBeOrNotToBe = {
-  toBe: (val: any) => boolean;
-  notToBe: (val: any) => boolean;
-};
 
-function reverseBetween(head: ListNode | null, left: number, right: number): ListNode | null {
-  let pointer: ListNode | null | undefined = head
-  let position = 0
-  while(pointer?.next != null){
-    if(position >= left && position <= right ){
-      const next = pointer.next.next
-      next
-    }else{
-      pointer=pointer?.next
-    }
-  }
-};
+const nums = [2,7,11,15]
+const k = 9
 
+const result = twoSum(nums, k)
 
-console.log(numIdenticalPairs([1,2,3,1,1,3]))
+console.log('Result', result)
+
