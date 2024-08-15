@@ -32,29 +32,26 @@ class ListNode {
   }
 }
 
-function productExceptSelf(nums: number[]): number[] {
-  const leftResultMap = {};
-  const rightResultMap = {};
-  const result = [];
-  for (let i = 0; i <= nums.length - 1; i++) {
-    leftResultMap[i] = (leftResultMap[i - 1] ?? 1) * nums[i];
-  }
+function groupAnagrams(strs: string[]): string[][] {
+  const anagramMap: { [key: string]: string[] } = {};
 
-  for (let i = nums.length - 1; i >= 0; i--) {
-    rightResultMap[i] = (rightResultMap[i + 1] ?? 1) * nums[i];
-  }
+  strs.forEach(s => {
+    const key = s.split('').sort().join();
+    if (anagramMap[key]) {
+      anagramMap[key].push(s);
+    } else {
+      const arr: string[] = [];
+      arr.push(s);
+      anagramMap[key] = arr;
+    }
+  });
 
-  for (let i = 0; i <= nums.length - 1; i++) {
-    const letMultiplication = leftResultMap[i - 1] ?? 1;
-    const rightMultiplication = rightResultMap[i + 1] ?? 1;
-    result.push(letMultiplication * rightMultiplication);
-  }
-  return result;
+  return Object.values(anagramMap);
 }
 
 const nums = [1, 2, 3, 4];
 const k = 9;
 
-const result = productExceptSelf(nums);
+const result = groupAnagrams(['eat', 'tea', 'tan', 'ate', 'nat', 'bat']);
 
 console.log('Result', result);
