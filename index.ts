@@ -32,36 +32,29 @@ class ListNode {
   }
 }
 
-function convert(s: string, numRows: number): string {
-  const rowMap = {};
-  let direction = 'up';
-  let actualRow = 1;
-  if (numRows === 1) return s;
-  for (let i = 0; i <= s.length - 1; i++) {
-    if (actualRow === numRows) {
-      rowMap[actualRow] = (rowMap[actualRow] ?? '') + s[i];
-      direction = 'down';
-      actualRow--;
-    } else if (actualRow === 1) {
-      rowMap[actualRow] = (rowMap[actualRow] ?? '') + s[i];
-      direction = 'up';
-      actualRow++;
-    } else if (actualRow !== numRows || actualRow !== 1) {
-      rowMap[actualRow] = (rowMap[actualRow] ?? '') + s[i];
-      if (direction === 'up') {
-        actualRow++;
-      } else {
-        actualRow--;
-      }
-    }
+function productExceptSelf(nums: number[]): number[] {
+  const leftResultMap = {};
+  const rightResultMap = {};
+  const result = [];
+  for (let i = 0; i <= nums.length - 1; i++) {
+    leftResultMap[i] = (leftResultMap[i - 1] ?? 1) * nums[i];
   }
 
-  return Object.values(rowMap).join('');
+  for (let i = nums.length - 1; i >= 0; i--) {
+    rightResultMap[i] = (rightResultMap[i + 1] ?? 1) * nums[i];
+  }
+
+  for (let i = 0; i <= nums.length - 1; i++) {
+    const letMultiplication = leftResultMap[i - 1] ?? 1;
+    const rightMultiplication = rightResultMap[i + 1] ?? 1;
+    result.push(letMultiplication * rightMultiplication);
+  }
+  return result;
 }
 
-const nums = [2, 7, 11, 15];
+const nums = [1, 2, 3, 4];
 const k = 9;
 
-const result = convert('AB', 1);
+const result = productExceptSelf(nums);
 
 console.log('Result', result);
